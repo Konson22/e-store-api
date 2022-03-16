@@ -1,0 +1,25 @@
+const {verify, sign} = require('jsonwebtoken')
+
+async function createToken(user){
+    return await sign(user, 'secreteword')
+}
+
+
+async function verifyToken(req, res, next) {
+	
+	const token = req.cookies['SALE-CONEX-KEY']
+	try{
+        if(token == null) return res.sendStatus(401);
+       
+		verify(token, 'secreteword', (err, user)=>{
+			if(err) return res.status(403).send('Your session has expired please login');
+			req.user = user
+			return next();
+		});
+
+	}catch(err){
+		return res.json({error:err});
+	}
+}
+
+module.exports = {createToken, verifyToken}
