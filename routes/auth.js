@@ -46,7 +46,7 @@ route.post('/login', (req, res) => {
         const verify = await bcrypt.compare(password, user[0].password)
         if(!verify) return res.status(403).send('Wrong password!');
 
-        const token = await createToken({name:user[0].name, email:user[0].email, _id:user[0]._id})
+        const token = await createToken({name:user[0].name, email:user[0].email, phone:user[0].phone, _id:user[0]._id})
 
         res.cookie('SALE-CONEX-KEY', token, {maxAge:10000 * 60 * 60, httpOnly:true})
         res.json({

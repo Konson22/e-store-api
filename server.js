@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser')
 
 const app = express();
 app.use(express.static('public'));
+app.use(express.static('images'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
