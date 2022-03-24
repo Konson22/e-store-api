@@ -26,7 +26,7 @@ route.get('/', (req, res) => {
 
 //UPLOAD ITEM   
 route.post('/upload', upload.single('image'), (req, res) => {
-    const image =  `/uploads/${req.file.originalname}`
+    const image =  `https://e-store-api.herokuapp.com/uploads/${req.file.originalname}`
     adverts.insert({...req.body, image}, (err, result) => {
         if(err) throw err
         res.json(result);
