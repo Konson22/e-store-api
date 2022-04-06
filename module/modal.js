@@ -1,13 +1,98 @@
 const database = require('nedb');
 
-const users = new database('./databases/users.db');
-const adverts = new database('./databases/adverts.db');
+const users = new database('./database/users.db');
+const adverts = new database('./database/adverts.db');
+const jobs = new database('./database/jobs.db');
 users.loadDatabase();
+jobs.loadDatabase();
 adverts.loadDatabase();
 
 
-module.exports = {users, adverts}
+module.exports = {users, adverts, jobs}
 
+
+// jobs.insert([
+//     {
+//         employerId:1,
+//         post_by:'UNICEF',
+//         position:'Ware House Assistance',
+//         position_num:3,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Juba',
+//         description:'',
+//     },
+//     {
+//         employerId:2,
+//         post_by:'ICRC',
+//         position:'Mechanic',
+//         position_num:1,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Juba',
+//         description:'',
+//     },
+//     {
+//         employerId:3,
+//         post_by:'UNHR',
+//         position:'Ware House Manager',
+//         position_num:3,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Yei River',
+//         description:'',
+//     },
+//     {
+//         employerId:4,
+//         post_by:'ACTED',
+//         position:'Driver',
+//         position_num:5,
+//         post_date:'12/01/2022',
+//         deadline:'25/02/2022',
+//         location:'Wau',
+//         description:'',
+//     },
+//     {
+//         employerId:1,
+//         post_by:'UNICEF',
+//         position:'Ware House Assistance',
+//         position_num:3,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Juba',
+//         description:'',
+//     },
+//     {
+//         employerId:2,
+//         post_by:'ICRC',
+//         position:'Mechanic',
+//         position_num:1,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Juba',
+//         description:'',
+//     },
+//     {
+//         employerId:3,
+//         post_by:'UNHR',
+//         position:'Ware House Manager',
+//         position_num:3,
+//         post_date:'12/01/2022',
+//         deadline:'05/02/2022',
+//         location:'Yei River',
+//         description:'',
+//     },
+//     {
+//         employerId:4,
+//         post_by:'ACTED',
+//         position:'Driver',
+//         position_num:5,
+//         post_date:'12/01/2022',
+//         deadline:'25/02/2022',
+//         location:'Wau',
+//         description:'',
+//     },
+// ])
 
 // adverts.insert([
 //     {

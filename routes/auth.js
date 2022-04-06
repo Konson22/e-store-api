@@ -24,16 +24,20 @@ route.post('/authorize', verifyToken, (req, res) => {
 
 //GET ALL REGISTER
 route.post('/register', async (req, res) => {
-    const hashPass = await bcrypt.hash(req.body.password, 5);
-    const data = {...req.body, password:hashPass}
-    users.find({email:req.body.email}, async (err, results) => {
-        if(err) throw err
-        if(results.length > 0) return res.status(403).send('Already  registered!.')
-        users.insert(data, (err, user) => {
+    try{
+        const hashPass = await bcrypt.hash(req.body.password, 5);
+        const data = {...req.body, password:hashPass}
+        users.find({email:req.body.email}, async (err, results) => {
             if(err) throw err
-            res.status(201).json(user)
+            if(results.length > 0) return res.status(403).send('Already  registered!.')
+            users.insert(data, (err, user) => {
+                if(err) throw err
+                res.status(201).json(user)
+            })
         })
-    })
+    }catch(error){
+        res.send(error)
+    }
 })
 
 
