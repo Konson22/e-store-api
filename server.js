@@ -5,6 +5,7 @@ const advertRoute = require('./routes/advert');
 const authRoute = require('./routes/auth');
 const jobsRoute = require('./routes/jobs');
 var cookieParser = require('cookie-parser')
+const mangoos = require('mongoose')
 
 const app = express();
 app.use(express.static('public'));
@@ -13,7 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({origin: true, credentials: true }));
-
 
 
 app.use('/auth', authRoute);

@@ -27,14 +27,11 @@ route.get('/', (req, res) => {
 //UPLOAD ITEM   
 route.post('/upload', verifyToken, upload.single('image'), async (req, res) => {
     try {
-        const image =  `https://e-store-api.herokuapp.com/uploads/${req.file.originalname}`
+        const image =  `http://localhost:3001/uploads/${req.file.originalname}`
         const adsData = {...req.body, image, sallerId:req.user._id}
         adverts.insert(adsData, (err, result) => {
             if(err) throw err
-            res.status(201).json({
-                result,
-                message:'Uploaded Sucessfully!',
-            });
+            res.status(201).json(result);
         })
     } catch (error) {
         res.status(500).send(error);
