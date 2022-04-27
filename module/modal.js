@@ -1,8 +1,8 @@
 const database = require('nedb');
 
-const users = new database('./database/users.db');
-const adverts = new database('./database/adverts.db');
-const jobs = new database('./database/jobs.db');
+const users = new database('./databases/users.db');
+const adverts = new database('./databases/adverts.db');
+const jobs = new database('./databases/jobs.db');
 users.loadDatabase();
 jobs.loadDatabase();
 adverts.loadDatabase();

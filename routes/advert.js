@@ -3,6 +3,8 @@ const { adverts } = require('../module/modal');
 const multer = require('multer');
 const { verifyToken } = require('../midleware/jwt');
 
+
+
 const storage = multer.diskStorage({
     destination:function(req, file, cb){
         cb(null, 'public/uploads')
@@ -27,7 +29,7 @@ route.get('/', (req, res) => {
 //UPLOAD ITEM   
 route.post('/upload', verifyToken, upload.single('image'), async (req, res) => {
     try {
-        const image =  `http://localhost:3001/uploads/${req.file.originalname}`
+        const image =  `https://e-store-api.herokuapp.com/uploads/${req.file.originalname}`
         const adsData = {...req.body, image, sallerId:req.user._id}
         adverts.insert(adsData, (err, result) => {
             if(err) throw err
