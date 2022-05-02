@@ -44,8 +44,8 @@ route.post('/register', async (req, res) => {
             users.insert(newUser, async (err, user) => {
                 if(err) throw err
                 const token = await createToken({name:user.name, email:user.email, phone:user.phone, avatar:user.avatar, _id:user._id})
-                res.cookie('SALE-CONEX-KEY', token, {maxAge:10000 * 60 * 60, httpOnly:true})
-                res.status(201).json({
+                res.cookie('SALE-CONEX-KEY', token, {maxAge:10000 * 60 * 60, httpOnly:true, SameSite:'none', secure:true})
+                res.status(200).json({
                     name:user.name, 
                     email:user.email, 
                     phone:user.phone, 
@@ -72,7 +72,7 @@ route.post('/login', (req, res) => {
     
             const token = await createToken({name:user[0].name, email:user[0].email, phone:user[0].phone, avatar:user[0].avatar, _id:user[0]._id})
     
-            res.cookie('SALE-CONEX-KEY', token, {maxAge:10000 * 60 * 60, httpOnly:true})
+            res.cookie('SALE-CONEX-KEY', token, {maxAge:10000 * 60 * 60, httpOnly:true, SameSite:'none', secure:true})
             res.json({
                 name:user[0].name, email:user[0].email, phone:user[0].phone, avatar:user[0].avatar, _id:user[0]._id
             })
